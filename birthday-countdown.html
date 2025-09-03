@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Birthday Countdown | Jagwax World</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="woman-7323894.png">
+</head>
+<body>
+  <header>
+    <img src="woman-7323894.png" class="logo" alt="Jagwax Profile">
+    <h1>Jagwax World</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="promotion.html">Promotion</a>
+      <a href="birthday-countdown.html" class="active">Birthday Countdown</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="rating.html">Top 10 Bots</a>
+      <a href="server.html">Server</a>
+      <a href="joke.html">Joke of the Day</a>
+      <a href="about.html">About</a>
+      <a href="privacy.html">Privacy</a>
+    </nav>
+  </header>
+  <main>
+    <section>
+      <h2>Birthday Countdown</h2>
+      <div class="birthday-profile-list">
+        <div class="birthday-profile-card">
+          <img src="IMG-20250724-WA0160.jpg" alt="Umeakuta Eunice Uchechi">
+          <div>
+            <strong>Umeakuta Eunice Uchechi</strong><br>
+            <b>Birthday:</b> June 18<br>
+            <b>Facebook:</b> <a href="https://www.facebook.com/profile.php?id=61575350217875" target="_blank">Profile</a><br>
+            <b>Email:</b> <a href="mailto:umeakutaeuniceuchechi@gmail.com">umeakutaeuniceuchechi@gmail.com</a><br>
+            <span class="bday-countdown-label">Countdown: <span id="bday-eunice"></span></span>
+          </div>
+        </div>
+        <div class="birthday-profile-card">
+          <img src="1756639660549.jpg" alt="Ayeni Faidat Ayomide">
+          <div>
+            <strong>Ayeni Faidat Ayomide</strong><br>
+            <b>Birthday:</b> March 21<br>
+            <b>Facebook:</b> <a href="https://www.facebook.com/profile.php?id=61579042764598" target="_blank">Profile</a><br>
+            <b>WhatsApp:</b> <a href="https://wa.me/2349132112175" target="_blank">+234 913 211 2175</a><br>
+            <span class="bday-countdown-label">Countdown: <span id="bday-faidat"></span></span>
+          </div>
+        </div>
+      </div>
+      <div class="notice">
+        Still gathering more birthdays and images. Want your birthday or profile listed? <a href="contact.html">Contact us!</a>
+      </div>
+    </section>
+  </main>
+  <footer>
+    &copy; <span id="year"></span> Jagwax World. All rights reserved.
+  </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    function nextBirthday(month, day) {
+      const today = new Date();
+      let year = today.getFullYear();
+      let bday = new Date(year, month - 1, day);
+      if (bday < today) bday = new Date(year + 1, month - 1, day);
+      return bday;
+    }
+    function showCountdown(elementId, month, day) {
+      const el = document.getElementById(elementId);
+      function update() {
+        const now = new Date(), bday = nextBirthday(month, day);
+        const ms = bday - now;
+        if (ms < 0) { el.textContent = "Happy Birthday!"; return; }
+        const days = Math.floor(ms / 86400000);
+        const hours = Math.floor((ms % 86400000) / 3600000);
+        const mins = Math.floor((ms % 3600000) / 60000);
+        el.textContent = `${days}d ${hours}h ${mins}m`;
+      }
+      update();
+      setInterval(update, 60000);
+    }
+    showCountdown("bday-eunice", 6, 18); // June 18
+    showCountdown("bday-faidat", 3, 21); // March 21
+  </script>
+</body>
+</html>
